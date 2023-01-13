@@ -75,6 +75,12 @@
     </Compile>
     <Compile Include="HlavniStatik.cs" />
     <Compile Include="Kategorie.cs" />
+    <Compile Include="Obchod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Obchod.Designer.cs">
+      <DependentUpon>Obchod.cs</DependentUpon>
+    </Compile>
     <Compile Include="PraceSDB.cs" />
     <Compile Include="Prihlaseni.cs">
       <SubType>Form</SubType>
@@ -90,9 +96,18 @@
     <Compile Include="Registrace.Designer.cs">
       <DependentUpon>Registrace.cs</DependentUpon>
     </Compile>
+    <Compile Include="StromKategorii.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StromKategorii.Designer.cs">
+      <DependentUpon>StromKategorii.cs</DependentUpon>
+    </Compile>
     <Compile Include="Zbozi.cs" />
     <EmbeddedResource Include="Editace.resx">
       <DependentUpon>Editace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Obchod.resx">
+      <DependentUpon>Obchod.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Prihlaseni.resx">
       <DependentUpon>Prihlaseni.cs</DependentUpon>

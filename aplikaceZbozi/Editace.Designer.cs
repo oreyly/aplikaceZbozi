@@ -29,7 +29,7 @@ namespace aplikaceZbozi
         /// </summary>
         private void InitializeComponent()
         {
-            this.stromKategorii = new System.Windows.Forms.TreeView();
+            this.stromKategorii = new StromKategorii();
             this.listZbozi = new System.Windows.Forms.ListBox();
             this.tbNazevZbozi = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,7 +41,6 @@ namespace aplikaceZbozi
             this.nudMnozstviZbozi = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.tbKategorieNazev = new System.Windows.Forms.TextBox();
-            this.btNovaKategorie = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -52,7 +51,6 @@ namespace aplikaceZbozi
             this.btUlozitZbozi = new System.Windows.Forms.Button();
             this.btOdstranKategorii = new System.Windows.Forms.Button();
             this.btOdstranZbozi = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.cbxUpravaKategorie = new System.Windows.Forms.CheckBox();
             this.cbxUpravaZbozi = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudCenaZbozi)).BeginInit();
@@ -61,12 +59,15 @@ namespace aplikaceZbozi
             // 
             // stromKategorii
             // 
+            this.stromKategorii.AllowDrop = true;
             this.stromKategorii.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.stromKategorii.Location = new System.Drawing.Point(12, 12);
             this.stromKategorii.Name = "stromKategorii";
             this.stromKategorii.Size = new System.Drawing.Size(233, 385);
             this.stromKategorii.TabIndex = 2;
             this.stromKategorii.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.stromKategorii.DragDrop += new System.Windows.Forms.DragEventHandler(this.stromKategorii_DragDrop);
+            this.stromKategorii.DragEnter += new System.Windows.Forms.DragEventHandler(this.stromKategorii_DragEnter);
             // 
             // listZbozi
             // 
@@ -78,6 +79,7 @@ namespace aplikaceZbozi
             this.listZbozi.Size = new System.Drawing.Size(182, 384);
             this.listZbozi.TabIndex = 3;
             this.listZbozi.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listZbozi.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listZbozi_MouseDown);
             // 
             // tbNazevZbozi
             // 
@@ -180,16 +182,6 @@ namespace aplikaceZbozi
             this.tbKategorieNazev.Name = "tbKategorieNazev";
             this.tbKategorieNazev.Size = new System.Drawing.Size(286, 26);
             this.tbKategorieNazev.TabIndex = 15;
-            // 
-            // btNovaKategorie
-            // 
-            this.btNovaKategorie.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btNovaKategorie.Location = new System.Drawing.Point(597, 159);
-            this.btNovaKategorie.Name = "btNovaKategorie";
-            this.btNovaKategorie.Size = new System.Drawing.Size(170, 30);
-            this.btNovaKategorie.TabIndex = 17;
-            this.btNovaKategorie.Text = "Nová kategorie";
-            this.btNovaKategorie.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -295,16 +287,6 @@ namespace aplikaceZbozi
             this.btOdstranZbozi.UseVisualStyleBackColor = true;
             this.btOdstranZbozi.Click += new System.EventHandler(this.btOdstranZbozi_Click);
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(618, 268);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 28;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // cbxUpravaKategorie
             // 
             this.cbxUpravaKategorie.Appearance = System.Windows.Forms.Appearance.Button;
@@ -342,7 +324,6 @@ namespace aplikaceZbozi
             this.ClientSize = new System.Drawing.Size(1184, 450);
             this.Controls.Add(this.cbxUpravaZbozi);
             this.Controls.Add(this.cbxUpravaKategorie);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.btOdstranZbozi);
             this.Controls.Add(this.btOdstranKategorii);
             this.Controls.Add(this.btUlozitZbozi);
@@ -353,7 +334,6 @@ namespace aplikaceZbozi
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.btNovaKategorie);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tbKategorieNazev);
             this.Controls.Add(this.nudMnozstviZbozi);
@@ -377,7 +357,7 @@ namespace aplikaceZbozi
         }
 
         #endregion
-        private System.Windows.Forms.TreeView stromKategorii;
+        private StromKategorii stromKategorii;
         private System.Windows.Forms.ListBox listZbozi;
         private System.Windows.Forms.TextBox tbNazevZbozi;
         private System.Windows.Forms.Label label1;
@@ -389,7 +369,6 @@ namespace aplikaceZbozi
         private System.Windows.Forms.NumericUpDown nudMnozstviZbozi;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tbKategorieNazev;
-        private System.Windows.Forms.Button btNovaKategorie;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
@@ -400,7 +379,6 @@ namespace aplikaceZbozi
         private System.Windows.Forms.Button btUlozitZbozi;
         private System.Windows.Forms.Button btOdstranKategorii;
         private System.Windows.Forms.Button btOdstranZbozi;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.CheckBox cbxUpravaKategorie;
         private System.Windows.Forms.CheckBox cbxUpravaZbozi;
     }
