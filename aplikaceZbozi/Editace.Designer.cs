@@ -29,7 +29,7 @@ namespace aplikaceZbozi
         /// </summary>
         private void InitializeComponent()
         {
-            this.stromKategorii = new StromKategorii();
+            this.stromKategorii = new aplikaceZbozi.StromKategorii();
             this.listZbozi = new System.Windows.Forms.ListBox();
             this.tbNazevZbozi = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,6 +53,7 @@ namespace aplikaceZbozi
             this.btOdstranZbozi = new System.Windows.Forms.Button();
             this.cbxUpravaKategorie = new System.Windows.Forms.CheckBox();
             this.cbxUpravaZbozi = new System.Windows.Forms.CheckBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudCenaZbozi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMnozstviZbozi)).BeginInit();
             this.SuspendLayout();
@@ -317,11 +318,27 @@ namespace aplikaceZbozi
             this.cbxUpravaZbozi.UseVisualStyleBackColor = true;
             this.cbxUpravaZbozi.CheckedChanged += new System.EventHandler(this.cbxUpravaZbozi_CheckedChanged);
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Items.AddRange(new object[] {
+            "htr",
+            "htr",
+            "gsdv",
+            "bg",
+            "fnmh",
+            "g"});
+            this.listBox1.Location = new System.Drawing.Point(542, 168);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 95);
+            this.listBox1.TabIndex = 31;
+            // 
             // Editace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 450);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.cbxUpravaZbozi);
             this.Controls.Add(this.cbxUpravaKategorie);
             this.Controls.Add(this.btOdstranZbozi);
@@ -346,6 +363,9 @@ namespace aplikaceZbozi
             this.Controls.Add(this.tbNazevZbozi);
             this.Controls.Add(this.listZbozi);
             this.Controls.Add(this.stromKategorii);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Editace";
             this.Text = "Editace";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Editace_FormClosed);
@@ -381,5 +401,6 @@ namespace aplikaceZbozi
         private System.Windows.Forms.Button btOdstranZbozi;
         private System.Windows.Forms.CheckBox cbxUpravaKategorie;
         private System.Windows.Forms.CheckBox cbxUpravaZbozi;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace aplikaceZbozi
 {
-    class Kategorie
+    public class Kategorie
     {
         public static Kategorie hlavniKategorie;
         public static Dictionary<string, Kategorie> vsechnyKategorie;
@@ -46,19 +46,36 @@ namespace aplikaceZbozi
 
         private void NactiZbozi()
         {
-            List<List<object>> dataOZbozi = PraceSDB.ZavolejPrikaz("select z.Nazev, z.Popis, z.Cena, z.Mnozstvi from Zbozi_kategorie as zk inner join Zbozi as z on zk.zboziId=z.Id inner join Kategorie as k on zk.kategorieId=k.Id where k.Nazev=@kat;", false, true, "@kat".SparujS(Nazev));
-            
-            zbozi = new List<Zbozi>();
-            foreach(List<object> dato in dataOZbozi)
+            List<List<object>> dataOZbozi;
+            if (HlavniStatik.pouzeUzivatel)
             {
-                if (!Zbozi.vsechnoZbozi.ContainsKey((string)dato[0]))
+                Dictionary<int, int> idecka = PraceSDB.ZavolejPrikaz("select zboziId, count(zboziId) as Mnozstvi from Uzivatel_zbozi where uzivatelId=@id group by zboziId;", false, true, "@id".SparujS(HlavniStatik.prihlasenyUzivatelId)).ToDictionary(radek => Convert.ToInt32(radek[0]), radek => Convert.ToInt32(radek[1]));
+                if (idecka.Count == 0)
                 {
-                    zbozi.Add(new Zbozi((string)dato[0], (string)dato[1], (int)dato[2], (int)dato[3], this));
+                    dataOZbozi = new List<List<object>>();
                 }
                 else
                 {
-                    Zbozi.vsechnoZbozi[(string)dato[0]].kategorie.Add(this);
-                    zbozi.Add(Zbozi.vsechnoZbozi[(string)dato[0]]);
+                    dataOZbozi = PraceSDB.ZavolejPrikaz($"select z.Id, z.Nazev, z.Popis, z.Cena from Zbozi_kategorie as zk inner join Zbozi as z on zk.zboziId=z.Id inner join Kategorie as k on zk.kategorieId=k.Id where k.Nazev=@kat and z.Id in ({string.Join(",", idecka.Keys)});", false, true, "@kat".SparujS(Nazev));
+                    dataOZbozi.ForEach(radek => radek.Add(idecka[Convert.ToInt32(radek[0])]));
+                }
+            }
+            else
+            {
+                dataOZbozi = PraceSDB.ZavolejPrikaz("select z.Id, z.Nazev, z.Popis, z.Cena, z.Mnozstvi from Zbozi_kategorie as zk inner join Zbozi as z on zk.zboziId=z.Id inner join Kategorie as k on zk.kategorieId=k.Id where k.Nazev=@kat;", false, true, "@kat".SparujS(Nazev));
+            }
+
+            zbozi = new List<Zbozi>();
+            foreach(List<object> dato in dataOZbozi)
+            {
+                if (!Zbozi.vsechnoZbozi.ContainsKey((string)dato[1]))
+                {
+                    zbozi.Add(new Zbozi((string)dato[1], (string)dato[2], (int)dato[3], (int)dato[4], this));
+                }
+                else
+                {
+                    Zbozi.vsechnoZbozi[(string)dato[1]].kategorie.Add(this);
+                    zbozi.Add(Zbozi.vsechnoZbozi[(string)dato[1]]);
                 }
             }
         }

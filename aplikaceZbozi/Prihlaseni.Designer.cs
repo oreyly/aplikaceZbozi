@@ -63,19 +63,22 @@ namespace aplikaceZbozi
             // 
             this.tbJmeno.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tbJmeno.Location = new System.Drawing.Point(168, 12);
+            this.tbJmeno.MaxLength = 15;
             this.tbJmeno.Name = "tbJmeno";
             this.tbJmeno.Size = new System.Drawing.Size(150, 26);
             this.tbJmeno.TabIndex = 2;
-            this.tbJmeno.Text = "Devvastor";
+            this.tbJmeno.Text = "Admin";
             // 
             // tbHeslo
             // 
             this.tbHeslo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tbHeslo.Location = new System.Drawing.Point(168, 44);
+            this.tbHeslo.MaxLength = 20;
             this.tbHeslo.Name = "tbHeslo";
+            this.tbHeslo.PasswordChar = '*';
             this.tbHeslo.Size = new System.Drawing.Size(150, 26);
             this.tbHeslo.TabIndex = 3;
-            this.tbHeslo.Text = "Heslo";
+            this.tbHeslo.Text = "Administrator";
             // 
             // label1
             // 
@@ -112,10 +115,12 @@ namespace aplikaceZbozi
             this.Controls.Add(this.tbJmeno);
             this.Controls.Add(this.btRegist);
             this.Controls.Add(this.btPrihlas);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Prihlaseni";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Přihlášení";
-            this.Load += new System.EventHandler(this.Prihlaseni_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

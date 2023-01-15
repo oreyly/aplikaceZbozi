@@ -22,11 +22,6 @@ namespace aplikaceZbozi
             InitializeComponent();
         }
 
-        private void Registrace_Load(object sender, EventArgs e)
-        {
-            Text = $"W: {Width - ClientSize.Width}; H: {Height - ClientSize.Height}";
-        }
-
         private void btPrihlas_Click(object sender, EventArgs e)
         {
             Close();
@@ -34,7 +29,7 @@ namespace aplikaceZbozi
 
         private void btRegist_Click(object sender, EventArgs e)
         {
-            if (tbJmeno.Text != "" && tbHeslo.Text != "" && tbHeslo.Text == tbHeslo2.Text)
+            if (!string.IsNullOrWhiteSpace(tbJmeno.Text) && tbJmeno.Text.Length > 3 && !string.IsNullOrWhiteSpace(tbHeslo.Text) && tbHeslo.Text.Length > 5 && tbHeslo.Text == tbHeslo2.Text)
             {
                 List<List<object>> o = PraceSDB.ZavolejPrikaz("select id from Uzivatele where Jmeno=@jmeno", false, true, "@jmeno".SparujS(tbJmeno.Text));
 
@@ -46,7 +41,7 @@ namespace aplikaceZbozi
                 }
                 else
                 {
-                    MessageBox.Show("Chyba");
+                    MessageBox.Show("Uživatel s tímto jménem již existuje!");
                 }
             }
         }

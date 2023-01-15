@@ -10,35 +10,20 @@ using System.Windows.Forms;
 
 namespace aplikaceZbozi
 {
-    public partial class Obchod : Form, IMaStromKategoriiASeznamZbozi
+    public partial class HistorieNakupu : Form, IMaStromKategoriiASeznamZbozi
     {
         Form rodic;
-        public Obchod(Form f)
+        public HistorieNakupu(Form f)
         {
+            HlavniStatik.pouzeUzivatel = true;
             rodic = f;
             InitializeComponent();
             stromKategorii.NactiStrom(flpSeznamZbozi);
-            var v = new object[] {
-            "Nejlevnější",
-            "Nejdražší",
-            "A-Z",
-            "Z-A",
-            "Nejvíce na skladě",
-            "Nejméně na skladě"};
-            /*rb1.FlatAppearance.MouseOverBackColor = rb1.BackColor;*/
-            rbLevne.CheckedChanged += NajetiNaCBX;
-        }
-
-        private void NajetiNaCBX(object sender, EventArgs e)
-        {
-            //MessageBox.Show("Pozot");
-            //rb1.FlatAppearance.MouseOverBackColor = rb1.BackColor;
         }
 
         private void Editace_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //Hide();
-            //Environment.Exit(0);
+            HlavniStatik.pouzeUzivatel = false;
             rodic.Show();
         }
 
@@ -60,11 +45,11 @@ namespace aplikaceZbozi
 
         private void SeradZbozi()
         {
-            if(rbDrahe.Checked)
+            if (rbDrahe.Checked)
             {
                 seznamZbozi = seznamZbozi.OrderByDescending(okno => okno.zbozi.Cena).ToList();
             }
-            else if(rbLevne.Checked)
+            else if (rbLevne.Checked)
             {
                 seznamZbozi = seznamZbozi.OrderBy(okno => okno.zbozi.Cena).ToList();
             }

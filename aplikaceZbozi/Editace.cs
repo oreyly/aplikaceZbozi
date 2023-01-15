@@ -12,16 +12,19 @@ namespace aplikaceZbozi
 {
     public partial class Editace : Form
     {
-        public Editace()
+        Form rodic;
+        public Editace(Form f)
         {
+            rodic = f;
             InitializeComponent();
-            stromKategorii.NactiStrom();
+            stromKategorii.NactiStrom(listZbozi);
         }
 
         private void Editace_FormClosed(object sender, FormClosedEventArgs e)
         {
             //Hide();
-            Environment.Exit(0);
+            //Environment.Exit(0);
+            rodic.Show();
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
@@ -75,7 +78,7 @@ namespace aplikaceZbozi
                 {
                     PraceSDB.ZavolejPrikaz("delete kk from kategorie_kategorie as kk inner join Kategorie as k on kk.diteId=k.Id where k.Nazev=@nazev;", false, false, "@nazev".SparujS(kat.Nazev));
                     PraceSDB.ZavolejPrikaz("delete from Kategorie where Nazev=@nazev", false, false, "@nazev".SparujS(kat.Nazev));
-                    stromKategorii.NactiStrom();
+                    stromKategorii.NactiStrom(listZbozi);
                 }
                 catch
                 {
@@ -102,18 +105,13 @@ namespace aplikaceZbozi
                     {
                         PraceSDB.ZavolejPrikaz("delete Zbozi where Nazev=@nazev;", false, false, "@nazev".SparujS(zbozi.Nazev));
                     }
-                    stromKategorii.NactiStrom();
+                    stromKategorii.NactiStrom(listZbozi);
                 }
                 catch
                 {
                     MessageBox.Show("Kategorii nelze odstranit");
                 }
             }
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            stromKategorii.NactiStrom();
         }
 
         private void cbxUpravaKategorie_CheckedChanged(object sender, EventArgs e)
@@ -135,7 +133,7 @@ namespace aplikaceZbozi
                     int idDite = Convert.ToInt32(PraceSDB.ZavolejPrikaz("insert into Kategorie(Nazev) values (@nazev); SELECT SCOPE_IDENTITY();", false, true, "@nazev".SparujS(tbKategorieNazev.Text))[0][0]);
                     int idRodic = (int)PraceSDB.ZavolejPrikaz("select id from Kategorie where nazev=@nazev;", false, true, "@nazev".SparujS(lbNadKategorieKategorie.Text))[0][0];
                     PraceSDB.ZavolejPrikaz($"insert into kategorie_kategorie(rodicId, diteId) values ({idRodic},{idDite})", false, false);
-                    stromKategorii.NactiStrom();
+                    stromKategorii.NactiStrom(listZbozi);
                 }
                 catch
                 {
@@ -163,7 +161,7 @@ namespace aplikaceZbozi
                         try
                         {
                             PraceSDB.ZavolejPrikaz("update Kategorie set Nazev=@novyNazev where Nazev=@staryNazev;", false, false, "@novyNazev".SparujS(tbKategorieNazev.Text), "@staryNazev".SparujS(stromKategorii.SelectedNode.Text));
-                            stromKategorii.NactiStrom();
+                            stromKategorii.NactiStrom(listZbozi);
                         }
                         catch
                         {
@@ -206,7 +204,7 @@ namespace aplikaceZbozi
                         int idZbozi = Convert.ToInt32(PraceSDB.ZavolejPrikaz("insert into Zbozi(Nazev, Popis, Cena, Mnozstvi) values (@nazev, @popis, @cena, @mnozstvi); SELECT SCOPE_IDENTITY();", false, true, "@nazev".SparujS(tbNazevZbozi.Text), "@popis".SparujS(tbPopisZbozi.Text), "@cena".SparujS((int)nudCenaZbozi.Value), "@mnozstvi".SparujS((int)nudMnozstviZbozi.Value))[0][0]);
                         int idKategorie = (int)PraceSDB.ZavolejPrikaz("select id from Kategorie where nazev=@nazev;", false, true, "@nazev".SparujS(lbNadKategorieZbozi.Text))[0][0];
                         PraceSDB.ZavolejPrikaz($"insert into Zbozi_kategorie(zboziId, kategorieId) values ({idZbozi},{idKategorie})", false, false);
-                        stromKategorii.NactiStrom();
+                        stromKategorii.NactiStrom(listZbozi);
                     }
                     catch
                     {
@@ -236,7 +234,7 @@ namespace aplikaceZbozi
                         try
                         {
                             PraceSDB.ZavolejPrikaz("update Zbozi set Nazev=@novyNazev, Popis=@popis, Cena=@cena, Mnozstvi=@mnozstvi where Nazev=@staryNazev;", false, false, "@novyNazev".SparujS(tbNazevZbozi.Text), "@popis".SparujS(tbPopisZbozi.Text), "@cena".SparujS((int)nudCenaZbozi.Value), "@mnozstvi".SparujS((int)nudMnozstviZbozi.Value), "@staryNazev".SparujS(vybrane.Nazev));
-                            stromKategorii.NactiStrom();
+                            stromKategorii.NactiStrom(listZbozi);
                         }
                         catch
                         {
@@ -252,6 +250,7 @@ namespace aplikaceZbozi
         {
             if (listZbozi.SelectedItem != null )
             {
+                listBox1_SelectedIndexChanged(null, null);
                 if (e.Button == MouseButtons.Left)
                 {
                     levy = true;
@@ -302,7 +301,7 @@ namespace aplikaceZbozi
                 PraceSDB.ZavolejPrikaz("delete from Zbozi_kategorie where zboziId=@zbozi and kategorieId=@kategorie", false, false, "@zbozi".SparujS(idZbozi), @"kategorie".SparujS(idKategorie));
             }
 
-            stromKategorii.NactiStrom();
+            stromKategorii.NactiStrom(listZbozi);
         }
     }
 }

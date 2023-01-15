@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,8 +17,8 @@ namespace aplikaceZbozi
                 ValidateNames = false
             };
 
-            /*PraceSDB.PripojDB("E:\\mvs\\aplikaceZbozi\\aplikaceZbozi\\databaze.mdf");
-            return;*/
+            PraceSDB.PripojDB("E:\\mvs\\aplikaceZbozi\\aplikaceZbozi\\databaze.mdf");
+            return;
 
             bool vys = false;
             do
@@ -39,10 +40,11 @@ namespace aplikaceZbozi
         [STAThread]
         static void Main()
         {
+            //string heslo = string.Join("", Encoding.ASCII.GetBytes(BCrypt.Net.BCrypt.EnhancedHashPassword("123")).Select(cislo => cislo.ToString("X")));
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             NajdiDB();
-            Application.Run(new Editace());
+            Application.Run(new Prihlaseni());
         }
     }
 }

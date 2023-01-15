@@ -17,13 +17,24 @@ namespace aplikaceZbozi
             InitializeComponent();
         }
 
-        public void NactiStrom(ListView lv = null)
+        public void NactiStrom(object o)
         {
             Kategorie.NactiKategorie();
             Nodes.Clear();
-            if (lv != null)
+            if (o != null)
             {
-                lv.Items.Clear();
+                if(o is ListBox lb)
+                {
+                    lb.Items.Clear();
+                }
+                else if(o is Panel p)
+                {
+                    p.Controls.Clear();
+                }
+                else
+                {
+                    throw new Exception("Vole co to tam házíš?");
+                }
             }
 
             TreeNode tnc = Nodes.Add(Kategorie.hlavniKategorie.Nazev);

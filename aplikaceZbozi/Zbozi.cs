@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace aplikaceZbozi
 {
-    class Zbozi
+    public class Zbozi
     {
         public static Dictionary<string, Zbozi> vsechnoZbozi;
 

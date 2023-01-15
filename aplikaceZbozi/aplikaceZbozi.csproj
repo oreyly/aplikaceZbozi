@@ -73,13 +73,26 @@
     <Compile Include="Editace.Designer.cs">
       <DependentUpon>Editace.cs</DependentUpon>
     </Compile>
+    <Compile Include="HistorieNakupu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistorieNakupu.Designer.cs">
+      <DependentUpon>HistorieNakupu.cs</DependentUpon>
+    </Compile>
     <Compile Include="HlavniStatik.cs" />
     <Compile Include="Kategorie.cs" />
+    <Compile Include="IMaStromKategoriiASeznamZbozi.cs" />
     <Compile Include="Obchod.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Obchod.Designer.cs">
       <DependentUpon>Obchod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="oknoSeZbozim.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="oknoSeZbozim.Designer.cs">
+      <DependentUpon>oknoSeZbozim.cs</DependentUpon>
     </Compile>
     <Compile Include="PraceSDB.cs" />
     <Compile Include="Prihlaseni.cs">
@@ -96,6 +109,12 @@
     <Compile Include="Registrace.Designer.cs">
       <DependentUpon>Registrace.cs</DependentUpon>
     </Compile>
+    <Compile Include="Rozcesti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rozcesti.Designer.cs">
+      <DependentUpon>Rozcesti.cs</DependentUpon>
+    </Compile>
     <Compile Include="StromKategorii.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -106,8 +125,14 @@
     <EmbeddedResource Include="Editace.resx">
       <DependentUpon>Editace.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HistorieNakupu.resx">
+      <DependentUpon>HistorieNakupu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Obchod.resx">
       <DependentUpon>Obchod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="oknoSeZbozim.resx">
+      <DependentUpon>oknoSeZbozim.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Prihlaseni.resx">
       <DependentUpon>Prihlaseni.cs</DependentUpon>
@@ -123,6 +148,9 @@
     </Compile>
     <EmbeddedResource Include="Registrace.resx">
       <DependentUpon>Registrace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rozcesti.resx">
+      <DependentUpon>Rozcesti.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="databazeDataSet.xsc">
       <DependentUpon>databazeDataSet.xsd</DependentUpon>

@@ -23,13 +23,14 @@ namespace aplikaceZbozi
 
         private void btPrihlas_Click(object sender, EventArgs e)
         {
-            List<List<object>> vysledek = PraceSDB.ZavolejPrikaz("select Heslo from Uzivatele where Jmeno=@Jmeno", false, true, "@Jmeno".SparujS(tbJmeno.Text));
-            if (vysledek.Count == 1)
+            List<List<object>> vysledek = PraceSDB.ZavolejPrikaz("select Heslo, Id, Admin from Uzivatele where Jmeno=@Jmeno", false, true, "@Jmeno".SparujS(tbJmeno.Text));
+            if (vysledek.Count > 0)
             {
-                if(BCrypt.Net.BCrypt.EnhancedVerify(tbHeslo.Text, Encoding.UTF8.GetString((byte[])vysledek[0][0])))
+                if (BCrypt.Net.BCrypt.EnhancedVerify(tbHeslo.Text, Encoding.UTF8.GetString((byte[])vysledek[0][0])))
                 {
-                    Editace ed = new Editace();
-                    ed.Show();
+                    HlavniStatik.prihlasenyUzivatelId = (int)vysledek[0][1];
+                    Rozcesti r = new Rozcesti((bool)vysledek[0][2]);
+                    r.Show();
                     Hide();
                 }
                 else
@@ -47,11 +48,6 @@ namespace aplikaceZbozi
         {
             new Registrace(this).Show();
             Hide();
-        }
-
-        private void Prihlaseni_Load(object sender, EventArgs e)
-        {
-            btPrihlas_Click(null, null);
         }
     }
 }

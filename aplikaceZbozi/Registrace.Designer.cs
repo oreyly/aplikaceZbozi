@@ -67,19 +67,20 @@ namespace aplikaceZbozi
             // 
             this.tbHeslo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tbHeslo.Location = new System.Drawing.Point(168, 44);
+            this.tbHeslo.MaxLength = 20;
             this.tbHeslo.Name = "tbHeslo";
+            this.tbHeslo.PasswordChar = '*';
             this.tbHeslo.Size = new System.Drawing.Size(150, 26);
             this.tbHeslo.TabIndex = 9;
-            this.tbHeslo.Text = "Heslo";
             // 
             // tbJmeno
             // 
             this.tbJmeno.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tbJmeno.Location = new System.Drawing.Point(168, 12);
+            this.tbJmeno.MaxLength = 15;
             this.tbJmeno.Name = "tbJmeno";
             this.tbJmeno.Size = new System.Drawing.Size(150, 26);
             this.tbJmeno.TabIndex = 8;
-            this.tbJmeno.Text = "Devvastor";
             // 
             // btRegist
             // 
@@ -119,10 +120,11 @@ namespace aplikaceZbozi
             // 
             this.tbHeslo2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tbHeslo2.Location = new System.Drawing.Point(168, 76);
+            this.tbHeslo2.MaxLength = 20;
             this.tbHeslo2.Name = "tbHeslo2";
+            this.tbHeslo2.PasswordChar = '*';
             this.tbHeslo2.Size = new System.Drawing.Size(150, 26);
             this.tbHeslo2.TabIndex = 12;
-            this.tbHeslo2.Text = "Heslo";
             // 
             // Registrace
             // 
@@ -138,11 +140,13 @@ namespace aplikaceZbozi
             this.Controls.Add(this.tbJmeno);
             this.Controls.Add(this.btRegist);
             this.Controls.Add(this.btPrihlas);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Registrace";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registrace";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Registrace_FormClosed);
-            this.Load += new System.EventHandler(this.Registrace_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

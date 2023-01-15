@@ -1,7 +1,7 @@
 ﻿
 namespace aplikaceZbozi
 {
-    partial class Obchod
+    partial class HistorieNakupu
     {
         /// <summary>
         /// Required designer variable.
@@ -37,7 +37,7 @@ namespace aplikaceZbozi
             this.rbAz = new System.Windows.Forms.RadioButton();
             this.rbZa = new System.Windows.Forms.RadioButton();
             this.rbNejvice = new System.Windows.Forms.RadioButton();
-            this.stromKategorii = new aplikaceZbozi.StromKategorii();
+            this.stromKategorii = new StromKategorii();
             this.rbNejmene = new System.Windows.Forms.RadioButton();
             this.flpSeznamZbozi.SuspendLayout();
             this.SuspendLayout();
