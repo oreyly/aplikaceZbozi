@@ -31,12 +31,12 @@ namespace aplikaceZbozi
         //Event po vybrání kategorie
         private void stromKategorii_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (e.Node.Text == "Nejvyssi" && posledniNod != null)
+            if (e.Node.Text == HlavniStatik.NAZEV_HLAVNI_KATEGORIE && posledniNod != null)
             {
                 OtevriPredchozi(); //Zabránění vybrání nejvyšší kategorie
                 return;
             }
-            else if (e.Node.Text != "Nejvyssi")
+            else if (e.Node.Text != HlavniStatik.NAZEV_HLAVNI_KATEGORIE)
             {
                 posledniNod = e.Node.Text; //Uložení poslední vybrané kategorie
             }

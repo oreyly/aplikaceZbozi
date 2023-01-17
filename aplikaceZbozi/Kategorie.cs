@@ -87,30 +87,30 @@ namespace aplikaceZbozi
             vsechnyKategorie = new Dictionary<string, Kategorie>();
             Zbozi.vsechnoZbozi = new Dictionary<string, Zbozi>();
 
-            //Načte všechny dvojice kategorií (kategorie rodič-dítě)
+            //Načte všechny dvojice kategorií (rodič-dítě)
             List<List<string>> nacteneKategorie = PraceSDB.ZavolejPrikaz("SELECT k.Nazev, k2.Nazev from kategorie_kategorie as kk inner join Kategorie as k on kk.rodicId=k.Id inner join Kategorie as k2 on kk.diteId=k2.Id;", false, true).Select(radek => radek.Select(sloupec => (string)sloupec).ToList()).ToList();
             foreach (List<string> radek in nacteneKategorie)
             {
                 if (vsechnyKategorie.ContainsKey(radek[1])) //Pokud dítě je již načtené
                 {
-                    if (vsechnyKategorie.ContainsKey(radek[0]))
+                    if (vsechnyKategorie.ContainsKey(radek[0])) //Pokud rodič je již načtený, pouze se vzájemně k sobě přiřadí
                     {
                         vsechnyKategorie[radek[0]].Deti.AddIfNotExists(vsechnyKategorie[radek[1]]);
                         vsechnyKategorie[radek[1]].Rodice.AddIfNotExists(vsechnyKategorie[radek[0]]);
                     }
-                    else
+                    else //Pokud rodič ještě načtený není, vytvoří se a vzájemně se přiřadí
                     {
                         Kategorie kat = new Kategorie(radek[0], null);
                         kat.Deti.Add(vsechnyKategorie[radek[1]]);
                     }
                 }
-                else //Pokud kategorie ještě není načtená, vytvoří novou
+                else //Pokud dítě ještě není načtené, vytvoří se a při tvorbě i přiřadí rodič
                 {
                     new Kategorie(radek[1], radek[0]);
                 }
             }
 
-            hlavniKategorie = vsechnyKategorie["Nejvyssi"];
+            hlavniKategorie = vsechnyKategorie[HlavniStatik.NAZEV_HLAVNI_KATEGORIE]; //Označení nejvyšší kategorie, 
         }
     }
 }

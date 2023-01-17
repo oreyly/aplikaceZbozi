@@ -9,6 +9,8 @@ namespace aplikaceZbozi
 {
     public static class HlavniStatik
     {
+        public const string NAZEV_HLAVNI_KATEGORIE = "Nejvyssi"; //Název nejvyšší kategorie, která se používá pouze jako rodič všech
+
         public static int prihlasenyUzivatelId; //Id přihlášeného uživatele
         public static bool pouzeUzivatel; //Pomocná proměnná pro načítání zboží z DB do obchodu a historie
 

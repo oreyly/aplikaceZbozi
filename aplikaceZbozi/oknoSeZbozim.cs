@@ -12,13 +12,16 @@ namespace aplikaceZbozi
 {
     public partial class oknoSeZbozim : UserControl
     {
+        //Konstruktor pro testování
         public oknoSeZbozim()
         {
             InitializeComponent();
         }
 
-        public Zbozi zbozi;
-        IMaStromKategoriiASeznamZbozi form;
+        public Zbozi zbozi; //Zboží, kterého
+        IMaStromKategoriiASeznamZbozi form; //Nadřazený form
+
+        //Konstruktor pro Obchod
         public oknoSeZbozim(Zbozi z, Obchod o)
         {
             InitializeComponent();
@@ -31,7 +34,7 @@ namespace aplikaceZbozi
             lbCena.Text = z.Cena.ToString("N0") + " Kč";
             lbMnozstvi.Text = z.Mnozstvi.ToString("N0");
 
-            if (zbozi.Mnozstvi < 1)
+            if (zbozi.Mnozstvi < 1) //Nelze zakoupit, pokud už je zboží vyprodáno
             {
                 btKoupit.Enabled = false;
             }
@@ -41,6 +44,7 @@ namespace aplikaceZbozi
             }
         }
 
+        //Konstruktor pro historii
         public oknoSeZbozim(Zbozi z, HistorieNakupu hn)
         {
             InitializeComponent();
@@ -53,13 +57,14 @@ namespace aplikaceZbozi
             lbCena.Text = z.Cena.ToString("N0") + " Kč";
             lbMnozstvi.Text = z.Mnozstvi.ToString("N0");
 
-
+            //Změna popisků
             lbMnozstviPopis.Text = "Koupeno:";
             btKoupit.Text = "Vrátit";
 
             btKoupit.Click += Prodat_Click;
         }
 
+        //Metoda pro koupení zboží
         private void Koupit_Click(object sender, EventArgs e)
         {
             int zboziId = (int)PraceSDB.ZavolejPrikaz("select Id from Zbozi where Nazev=@nazev", false, true, "@nazev".SparujS(zbozi.Nazev))[0][0];
@@ -71,6 +76,7 @@ namespace aplikaceZbozi
             form.OtevriPredchozi();
         }
 
+        //Metoda pro vrácení zboží
         private void Prodat_Click(object sender, EventArgs e)
         {
             int[] dataOZbozi = PraceSDB.ZavolejPrikaz("select Id, Mnozstvi from Zbozi where Nazev=@nazev", false, true, "@nazev".SparujS(zbozi.Nazev))[0].Select(polozka => Convert.ToInt32(polozka)).ToArray();

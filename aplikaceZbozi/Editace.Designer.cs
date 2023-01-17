@@ -29,7 +29,6 @@ namespace aplikaceZbozi
         /// </summary>
         private void InitializeComponent()
         {
-            this.stromKategorii = new aplikaceZbozi.StromKategorii();
             this.listZbozi = new System.Windows.Forms.ListBox();
             this.tbNazevZbozi = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,22 +52,10 @@ namespace aplikaceZbozi
             this.btOdstranZbozi = new System.Windows.Forms.Button();
             this.cbxUpravaKategorie = new System.Windows.Forms.CheckBox();
             this.cbxUpravaZbozi = new System.Windows.Forms.CheckBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.stromKategorii = new aplikaceZbozi.StromKategorii();
             ((System.ComponentModel.ISupportInitialize)(this.nudCenaZbozi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMnozstviZbozi)).BeginInit();
             this.SuspendLayout();
-            // 
-            // stromKategorii
-            // 
-            this.stromKategorii.AllowDrop = true;
-            this.stromKategorii.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.stromKategorii.Location = new System.Drawing.Point(12, 12);
-            this.stromKategorii.Name = "stromKategorii";
-            this.stromKategorii.Size = new System.Drawing.Size(233, 385);
-            this.stromKategorii.TabIndex = 2;
-            this.stromKategorii.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-            this.stromKategorii.DragDrop += new System.Windows.Forms.DragEventHandler(this.stromKategorii_DragDrop);
-            this.stromKategorii.DragEnter += new System.Windows.Forms.DragEventHandler(this.stromKategorii_DragEnter);
             // 
             // listZbozi
             // 
@@ -86,6 +73,7 @@ namespace aplikaceZbozi
             // 
             this.tbNazevZbozi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tbNazevZbozi.Location = new System.Drawing.Point(873, 62);
+            this.tbNazevZbozi.MaxLength = 15;
             this.tbNazevZbozi.Name = "tbNazevZbozi";
             this.tbNazevZbozi.Size = new System.Drawing.Size(286, 26);
             this.tbNazevZbozi.TabIndex = 4;
@@ -114,6 +102,7 @@ namespace aplikaceZbozi
             // 
             this.tbPopisZbozi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tbPopisZbozi.Location = new System.Drawing.Point(873, 91);
+            this.tbPopisZbozi.MaxLength = 255;
             this.tbPopisZbozi.Multiline = true;
             this.tbPopisZbozi.Name = "tbPopisZbozi";
             this.tbPopisZbozi.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -307,38 +296,36 @@ namespace aplikaceZbozi
             // 
             this.cbxUpravaZbozi.Appearance = System.Windows.Forms.Appearance.Button;
             this.cbxUpravaZbozi.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cbxUpravaZbozi.Checked = true;
+            this.cbxUpravaZbozi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbxUpravaZbozi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxUpravaZbozi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cbxUpravaZbozi.Location = new System.Drawing.Point(814, 327);
             this.cbxUpravaZbozi.Name = "cbxUpravaZbozi";
             this.cbxUpravaZbozi.Size = new System.Drawing.Size(170, 30);
             this.cbxUpravaZbozi.TabIndex = 30;
-            this.cbxUpravaZbozi.Text = "Editování existující";
+            this.cbxUpravaZbozi.Text = "Nové zboží";
             this.cbxUpravaZbozi.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cbxUpravaZbozi.UseVisualStyleBackColor = true;
             this.cbxUpravaZbozi.CheckedChanged += new System.EventHandler(this.cbxUpravaZbozi_CheckedChanged);
             // 
-            // listBox1
+            // stromKategorii
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Items.AddRange(new object[] {
-            "htr",
-            "htr",
-            "gsdv",
-            "bg",
-            "fnmh",
-            "g"});
-            this.listBox1.Location = new System.Drawing.Point(542, 168);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 95);
-            this.listBox1.TabIndex = 31;
+            this.stromKategorii.AllowDrop = true;
+            this.stromKategorii.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.stromKategorii.Location = new System.Drawing.Point(12, 12);
+            this.stromKategorii.Name = "stromKategorii";
+            this.stromKategorii.Size = new System.Drawing.Size(233, 385);
+            this.stromKategorii.TabIndex = 2;
+            this.stromKategorii.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.stromKategorii.DragDrop += new System.Windows.Forms.DragEventHandler(this.stromKategorii_DragDrop);
+            this.stromKategorii.DragEnter += new System.Windows.Forms.DragEventHandler(this.stromKategorii_DragEnter);
             // 
             // Editace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 450);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.cbxUpravaZbozi);
             this.Controls.Add(this.cbxUpravaKategorie);
             this.Controls.Add(this.btOdstranZbozi);
@@ -401,6 +388,5 @@ namespace aplikaceZbozi
         private System.Windows.Forms.Button btOdstranZbozi;
         private System.Windows.Forms.CheckBox cbxUpravaKategorie;
         private System.Windows.Forms.CheckBox cbxUpravaZbozi;
-        private System.Windows.Forms.ListBox listBox1;
     }
 }

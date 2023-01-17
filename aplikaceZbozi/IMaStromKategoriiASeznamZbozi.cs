@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace aplikaceZbozi
+﻿namespace aplikaceZbozi
 {
+    //Pomocné rozhraní, aby okno se zbožím mohlo lépe spolupracovat s obchodem a historií koupeného zboží
     interface IMaStromKategoriiASeznamZbozi
     {
         StromKategorii stromKategorii { get; set; }
