@@ -12,52 +12,40 @@ namespace aplikaceZbozi
 {
     public partial class Obchod : Form, IMaStromKategoriiASeznamZbozi
     {
-        Form rodic;
+        Form rodic; //Nadřazený form
         public Obchod(Form f)
         {
             rodic = f;
             InitializeComponent();
-            stromKategorii.NactiStrom(flpSeznamZbozi);
-            var v = new object[] {
-            "Nejlevnější",
-            "Nejdražší",
-            "A-Z",
-            "Z-A",
-            "Nejvíce na skladě",
-            "Nejméně na skladě"};
-            /*rb1.FlatAppearance.MouseOverBackColor = rb1.BackColor;*/
-            rbLevne.CheckedChanged += NajetiNaCBX;
+            stromKategorii.NactiStrom(flpSeznamZbozi); //Načte všechny kategorie
         }
 
-        private void NajetiNaCBX(object sender, EventArgs e)
-        {
-            //MessageBox.Show("Pozot");
-            //rb1.FlatAppearance.MouseOverBackColor = rb1.BackColor;
-        }
-
+        //Vrátí se do nadřazeného formu
         private void Editace_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //Hide();
-            //Environment.Exit(0);
             rodic.Show();
         }
 
-        List<oknoSeZbozim> seznamZbozi;
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        List<oknoSeZbozim> seznamZbozi; //Seznam zboží ve vybrané kategorii
+
+        //Event po vybrání kategorie
+        private void stromKategorii_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (e.Node.Text == "Nejvyssi" && posledniNod != null)
             {
-                OtevriPredchozi();
+                OtevriPredchozi(); //Zabránění vybrání nejvyšší kategorie
                 return;
             }
             else if (e.Node.Text != "Nejvyssi")
             {
-                posledniNod = e.Node.Text;
+                posledniNod = e.Node.Text; //Uložení poslední vybrané kategorie
             }
-            seznamZbozi = Kategorie.vsechnyKategorie[e.Node.Text].zbozi.Select(z => new oknoSeZbozim(z, this)).ToList();
+
+            seznamZbozi = Kategorie.vsechnyKategorie[e.Node.Text].zbozi.Select(z => new oknoSeZbozim(z, this)).ToList(); //Načtení zboží z dané kategorie
             SeradZbozi();
         }
 
+        //Seřazení zboží podle vybraného filtru
         private void SeradZbozi()
         {
             if(rbDrahe.Checked)
@@ -86,19 +74,21 @@ namespace aplikaceZbozi
             }
             else
             {
-                throw new Exception("Chyba");
+                throw new Exception("Chyba");// Pro případ nevybrání žádného filtru (nemožné, pouze testovací účel)
             }
 
             flpSeznamZbozi.Controls.Clear();
-            flpSeznamZbozi.Controls.AddRange(seznamZbozi.ToArray());
+            flpSeznamZbozi.Controls.AddRange(seznamZbozi.ToArray()); //Přidání zboží v novém pořadí
         }
 
-        private void rbLevne_CheckedChanged(object sender, EventArgs e)
+        //Změna řadícího filtru
+        private void CheckedChanged(object sender, EventArgs e)
         {
-            SeradZbozi();
+            SeradZbozi(); 
         }
 
-        string posledniNod;
+        string posledniNod; //Poslední otevřená kategorie
+        //Otevření poslední kategorie
         public void OtevriPredchozi()
         {
             stromKategorii.SelectedNode = stromKategorii.Nodes.NajdiNod(posledniNod);

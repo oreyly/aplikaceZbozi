@@ -84,7 +84,7 @@ namespace aplikaceZbozi
             this.rbLevne.TabStop = true;
             this.rbLevne.Text = "Nejlevnější";
             this.rbLevne.UseVisualStyleBackColor = true;
-            this.rbLevne.CheckedChanged += new System.EventHandler(this.rbLevne_CheckedChanged);
+            this.rbLevne.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // rbDrahe
             // 
@@ -98,7 +98,7 @@ namespace aplikaceZbozi
             this.rbDrahe.TabIndex = 11;
             this.rbDrahe.Text = "Nejdražší";
             this.rbDrahe.UseVisualStyleBackColor = true;
-            this.rbDrahe.CheckedChanged += new System.EventHandler(this.rbLevne_CheckedChanged);
+            this.rbDrahe.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // rbAz
             // 
@@ -112,7 +112,7 @@ namespace aplikaceZbozi
             this.rbAz.TabIndex = 12;
             this.rbAz.Text = "A-Z";
             this.rbAz.UseVisualStyleBackColor = true;
-            this.rbAz.CheckedChanged += new System.EventHandler(this.rbLevne_CheckedChanged);
+            this.rbAz.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // rbZa
             // 
@@ -126,7 +126,7 @@ namespace aplikaceZbozi
             this.rbZa.TabIndex = 13;
             this.rbZa.Text = "Z-A";
             this.rbZa.UseVisualStyleBackColor = true;
-            this.rbZa.CheckedChanged += new System.EventHandler(this.rbLevne_CheckedChanged);
+            this.rbZa.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // rbNejvice
             // 
@@ -140,7 +140,7 @@ namespace aplikaceZbozi
             this.rbNejvice.TabIndex = 14;
             this.rbNejvice.Text = "Nejvíce na skladě";
             this.rbNejvice.UseVisualStyleBackColor = true;
-            this.rbNejvice.CheckedChanged += new System.EventHandler(this.rbLevne_CheckedChanged);
+            this.rbNejvice.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // stromKategorii
             // 
@@ -150,7 +150,7 @@ namespace aplikaceZbozi
             this.stromKategorii.Name = "stromKategorii";
             this.stromKategorii.Size = new System.Drawing.Size(233, 500);
             this.stromKategorii.TabIndex = 3;
-            this.stromKategorii.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.stromKategorii.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.stromKategorii_AfterSelect);
             // 
             // rbNejmene
             // 
@@ -164,7 +164,7 @@ namespace aplikaceZbozi
             this.rbNejmene.TabIndex = 15;
             this.rbNejmene.Text = "Nejméně na skladě";
             this.rbNejmene.UseVisualStyleBackColor = true;
-            this.rbNejmene.CheckedChanged += new System.EventHandler(this.rbLevne_CheckedChanged);
+            this.rbNejmene.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // Obchod
             // 

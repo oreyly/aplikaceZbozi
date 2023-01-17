@@ -9,12 +9,14 @@ using System.Windows.Forms;
 
 namespace aplikaceZbozi
 {
+    //Statická třída pro komunikaci s DB
     public static class PraceSDB
     {
-        private static SqlConnection conn;
-        private static SqlCommand cmd;
-        private static SqlDataReader sdr;
+        private static SqlConnection conn; //Připojení K DB
+        private static SqlCommand cmd; //Příkazová řádka
+        private static SqlDataReader sdr; //Čtečka výstupu
 
+        //Otevření připojení k DB a připravení příkazové řádky
         public static bool PripojDB(string cesta)
         {
             conn = new SqlConnection($"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename={cesta};Integrated Security=True;Connect Timeout=30");
@@ -34,6 +36,14 @@ namespace aplikaceZbozi
             return true;
         }
 
+        /// <summary>
+        /// Volání příkazů do DB
+        /// </summary>
+        /// <param name="prikaz"> Příkaz z zavolání</param>
+        /// <param name="jeToFunkce">Jestli je volán příkaz, nebo funkce </param>
+        /// <param name="vraciNeco">Jestli je očekáván výstup</param>
+        /// <param name="parametry">Parametry </param>
+        /// <returns>Výstup z DB</returns>
         public static List<List<object>> ZavolejPrikaz(string prikaz, bool jeToFunkce, bool vraciNeco, params KeyValuePair<string, object>[] parametry)
         {
             cmd.Parameters.Clear();
@@ -48,6 +58,8 @@ namespace aplikaceZbozi
             if (vraciNeco)
             {
                 sdr = cmd.ExecuteReader();
+
+                //Uložení výstupu do listu listů objektů, přetypování je pak starost konkrétní části kódu
                 List<List<object>> vys = new List<List<object>>();
                 while (sdr.Read())
                 {

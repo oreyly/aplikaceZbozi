@@ -17,10 +17,11 @@ namespace aplikaceZbozi
             InitializeComponent();
             if (jeAdmin)
             {
-                btEditor.Enabled = true;
+                btEditor.Enabled = true; //Povolení editoru v případě, že je uživatel administrátor
             }
         }
 
+        //Otevření obchodu
         private void btObchod_Click(object sender, EventArgs e)
         {
             new Obchod(this).Show();
@@ -28,24 +29,28 @@ namespace aplikaceZbozi
 
         }
 
+        //Otevření editoru
         private void btEditor_Click(object sender, EventArgs e)
         {
             new Editace(this).Show();
             Hide();
         }
 
+        //Otevření historie koupeného zboží
         private void btKoupeno_Click(object sender, EventArgs e)
         {
             new HistorieNakupu(this).Show();
             Hide();
         }
 
+        //Ukončení celé aplikace
         private void Rozcesti_FormClosed(object sender, FormClosedEventArgs e)
         {
             Environment.Exit(0);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        //Ukončení celé aplikace
+        private void btKonec_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
         }

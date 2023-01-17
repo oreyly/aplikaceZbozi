@@ -33,7 +33,7 @@ namespace aplikaceZbozi
             this.btObchod = new System.Windows.Forms.Button();
             this.btEditor = new System.Windows.Forms.Button();
             this.btKoupeno = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btKonec = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -80,23 +80,23 @@ namespace aplikaceZbozi
             this.btKoupeno.UseVisualStyleBackColor = true;
             this.btKoupeno.Click += new System.EventHandler(this.btKoupeno_Click);
             // 
-            // button1
+            // btKonec
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(12, 128);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 26);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Konec";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btKonec.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btKonec.Location = new System.Drawing.Point(12, 128);
+            this.btKonec.Name = "btKonec";
+            this.btKonec.Size = new System.Drawing.Size(98, 26);
+            this.btKonec.TabIndex = 4;
+            this.btKonec.Text = "Konec";
+            this.btKonec.UseVisualStyleBackColor = true;
+            this.btKonec.Click += new System.EventHandler(this.btKonec_Click);
             // 
             // Rozcesti
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(123, 160);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btKonec);
             this.Controls.Add(this.btKoupeno);
             this.Controls.Add(this.btEditor);
             this.Controls.Add(this.btObchod);
@@ -105,7 +105,7 @@ namespace aplikaceZbozi
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Rozcesti";
-            this.Text = "Rozcesti";
+            this.Text = "Menu";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Rozcesti_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -118,6 +118,6 @@ namespace aplikaceZbozi
         private System.Windows.Forms.Button btObchod;
         private System.Windows.Forms.Button btEditor;
         private System.Windows.Forms.Button btKoupeno;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btKonec;
     }
 }

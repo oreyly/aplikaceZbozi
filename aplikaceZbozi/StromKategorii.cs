@@ -10,18 +10,20 @@ using System.Windows.Forms;
 
 namespace aplikaceZbozi
 {
-    public partial class StromKategorii : TreeView
+    public partial class StromKategorii : TreeView //Třída pro usnadnění práce s TreeView
     {
         public StromKategorii()
         {
             InitializeComponent();
         }
 
+        //Načtení kategorií do stromu
         public void NactiStrom(object o)
         {
             Kategorie.NactiKategorie();
-            Nodes.Clear();
-            if (o != null)
+            Nodes.Clear(); //Vyčištění existujících uzlů
+
+            if (o != null) //Vyčištění oblasti, kam se vypisují jednotlivé kusy zboží
             {
                 if(o is ListBox lb)
                 {
@@ -33,7 +35,7 @@ namespace aplikaceZbozi
                 }
                 else
                 {
-                    throw new Exception("Vole co to tam házíš?");
+                    throw new Exception("Chyba"); //V případě předání špatného parametru, pouze testovací význam
                 }
             }
 
@@ -43,6 +45,7 @@ namespace aplikaceZbozi
             ExpandAll();
         }
 
+        //Načtení podkategorií dané kategorie
         private void VytahniPodkategorie(Kategorie kat, TreeNode tn)
         {
             foreach (Kategorie k in kat.Deti)

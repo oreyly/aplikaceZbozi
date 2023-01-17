@@ -9,6 +9,7 @@ namespace aplikaceZbozi
 {
     static class Program
     {
+        //Načtení souboru s databází
         private static void NajdiDB()
         {
             OpenFileDialog ofd = new OpenFileDialog()
@@ -17,8 +18,6 @@ namespace aplikaceZbozi
                 ValidateNames = false
             };
 
-            PraceSDB.PripojDB("E:\\mvs\\aplikaceZbozi\\aplikaceZbozi\\databaze.mdf");
-            return;
 
             bool vys = false;
             do
@@ -26,11 +25,11 @@ namespace aplikaceZbozi
                 DialogResult res = ofd.ShowDialog();
                 if (res == DialogResult.OK)
                 {
-                    vys = PraceSDB.PripojDB(ofd.FileName);
+                    vys = PraceSDB.PripojDB(ofd.FileName); //Zkusí připojit soubor s DB
                 }
                 else
                 {
-                    Environment.Exit(0);
+                    Environment.Exit(0); //V případě zavření okna bez vybrání souboru vypne program
                 }
             } while (!vys);
         }
@@ -40,10 +39,9 @@ namespace aplikaceZbozi
         [STAThread]
         static void Main()
         {
-            //string heslo = string.Join("", Encoding.ASCII.GetBytes(BCrypt.Net.BCrypt.EnhancedHashPassword("123")).Select(cislo => cislo.ToString("X")));
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            NajdiDB();
+            NajdiDB(); //Načte DB před spuštěním programu
             Application.Run(new Prihlaseni());
         }
     }
