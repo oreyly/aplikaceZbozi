@@ -53,6 +53,7 @@ namespace aplikaceZbozi
             this.cbxUpravaKategorie = new System.Windows.Forms.CheckBox();
             this.cbxUpravaZbozi = new System.Windows.Forms.CheckBox();
             this.stromKategorii = new aplikaceZbozi.StromKategorii();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.nudCenaZbozi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMnozstviZbozi)).BeginInit();
             this.SuspendLayout();
@@ -321,11 +322,20 @@ namespace aplikaceZbozi
             this.stromKategorii.DragDrop += new System.Windows.Forms.DragEventHandler(this.stromKategorii_DragDrop);
             this.stromKategorii.DragEnter += new System.Windows.Forms.DragEventHandler(this.stromKategorii_DragEnter);
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(522, 199);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 31;
+            // 
             // Editace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 450);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.cbxUpravaZbozi);
             this.Controls.Add(this.cbxUpravaKategorie);
             this.Controls.Add(this.btOdstranZbozi);
@@ -388,5 +398,6 @@ namespace aplikaceZbozi
         private System.Windows.Forms.Button btOdstranZbozi;
         private System.Windows.Forms.CheckBox cbxUpravaKategorie;
         private System.Windows.Forms.CheckBox cbxUpravaZbozi;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

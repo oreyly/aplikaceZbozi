@@ -182,8 +182,8 @@ namespace aplikaceZbozi
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Obchod";
-            this.Text = "Obchod";
+            this.Name = "Historie Nákupů";
+            this.Text = "Historie Nákupů";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Editace_FormClosed);
             this.flpSeznamZbozi.ResumeLayout(false);
             this.ResumeLayout(false);

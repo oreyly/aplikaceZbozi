@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace aplikaceZbozi
@@ -135,6 +132,15 @@ namespace aplikaceZbozi
         //Uloží novou kategorii
         private void btUlozitKategorii_Click(object sender, EventArgs e)
         {
+            string meno = "''; drop database;";
+
+            string prikaz = $"select * from Lidi where jmeno={meno}";
+
+            SqlCommand cmd = new SqlCommand(prikaz);
+            cmd.Parameters.AddWithValue("@eno", meno);
+
+
+
             if (cbxUpravaKategorie.Checked)
             {
                 try
